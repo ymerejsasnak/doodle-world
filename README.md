@@ -2,6 +2,7 @@
 Little interactive thing for my daughter - for practicing css animations/transforms/etc
 
 
+!!!!walker code is kind of messy and too specific --- work on this before continuing!
 
 
 each will be added randomly offscreen on either side

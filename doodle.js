@@ -1,7 +1,20 @@
 $(function() {
 
-
+  
   addTrees();
+  var guys = [];
+  var guyIDcounter = 0;
+
+  $("#controls").on("click", "button", function() {
+  	guys.push(new Guy( $(this).text() ));
+
+    guyIDcounter++;    
+  });
+
+
+
+
+  animate();
 
 
 
@@ -9,9 +22,15 @@ $(function() {
 
 
 
+  function animate() {
+    
+    for (var guy = 0, len = guys.length; guy < len; guy++) {
+    	guys[guy].update();
+    	guys[guy].draw();
+    }
 
-
-
+    requestAnimationFrame(animate);
+  }
 
 
 
@@ -41,6 +60,34 @@ $(function() {
     }
   }
 
+
+
+
+
+
+  function Guy(type) {
+    $("body").append("<div class='guy " + type.toLowerCase() + "' id='guy" + guyIDcounter + "'></div>");
+
+  	//for initial programming starts on left, but make it random left or right eventually
+  	this.div = $("#guy" + guyIDcounter);
+  	this.x = -200;
+  	this.dir = 1;
+  	this.speed = 1;
+  }
+
+  Guy.prototype.update = function() {
+  		this.x += this.speed;
+  }
+
+  Guy.prototype.draw = function() {
+    this.div.css("left", this.x + "px");
+  }
+
+  
+
+  Guy.prototype.remove = function() {
+
+  }
 
   
 
