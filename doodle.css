@@ -1,0 +1,52 @@
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	background-color: lightblue;
+	overflow: hidden;
+}
+
+
+
+#controls {
+	position: absolute;
+	top: 1%;
+	left: 1%;
+}
+
+button {
+	font-size: 1.5em;
+}
+
+
+
+#ground {
+	position: absolute;
+	height: 5%;
+	width: 100%;
+	bottom: 0;
+	background-color: brown;
+	box-sizing: border-box;
+	border-top: 2px solid;
+}
+
+#sun {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  height: 200px;
+  width: 200px;
+  background: url(img/sun.png);
+  background-size: cover;
+}
+
+.tree {
+	position: absolute;
+	bottom: 5%;
+	left: 0;
+	height: 400px;
+	width: 200px;
+	background-size: cover;
+}
