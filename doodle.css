@@ -60,4 +60,6 @@ button {
 	height: 300px;
 	background: url(img/walker1.png);
 	background-size: cover;
+  transform-origin: bottom center;
+	transition: transform 0.1s ease-in-out;
 }

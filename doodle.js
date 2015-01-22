@@ -4,14 +4,17 @@ $(function() {
   addTrees();
   var guys = [];
   var guyIDcounter = 0;
+  var timer = 0;
+  var left = true;
+  var width = $("body").width();
+
+
 
   $("#controls").on("click", "button", function() {
   	guys.push(new Guy( $(this).text() ));
 
     guyIDcounter++;    
   });
-
-
 
 
   animate();
@@ -22,15 +25,7 @@ $(function() {
 
 
 
-  function animate() {
-    
-    for (var guy = 0, len = guys.length; guy < len; guy++) {
-    	guys[guy].update();
-    	guys[guy].draw();
-    }
-
-    requestAnimationFrame(animate);
-  }
+ 
 
 
 
@@ -52,10 +47,11 @@ $(function() {
     	
     	var thisTree = $("#tree" + i);
     	var type = Math.floor(Math.random() * 3) + 1;
+      var scale = (0.7 + Math.random() * 0.6)
       
       thisTree.css({  background: "url(img/tree" + type + ".png)",
       	              left: (Math.random() * 10 + i * 25) + "%",
-      	              transform: "scale(1," + (0.7 + Math.random() * 0.7) + ")",
+      	              transform: "scale(" + scale + "," + (scale * 1.1)  + ")",
       	              "transform-origin": "0 bottom" });      
     }
   }
@@ -66,29 +62,66 @@ $(function() {
 
 
   function Guy(type) {
-    $("body").append("<div class='guy " + type.toLowerCase() + "' id='guy" + guyIDcounter + "'></div>");
 
-  	//for initial programming starts on left, but make it random left or right eventually
-  	this.div = $("#guy" + guyIDcounter);
-  	this.x = -200;
-  	this.dir = 1;
-  	this.speed = 1;
+    $("body").append("<div class='guy " + type.toLowerCase() + "' id='guy" + guyIDcounter + "'></div>");
+  	this.div = document.getElementById("guy" + guyIDcounter);
+
+    //alternate generation on left and right side
+    if (left) {
+  	  this.x = -200;
+  	  this.dir = 1;
+      left = false;
+    }
+    else {
+      this.x = width;
+      this.dir = -1
+      left = true;
+    }
+
+    this.rotateLeft = true;
+    this.rotateSpeed = Math.floor(Math.random() * 10) + 5
+  	this.speed = 1 + Math.random();
+    this.scale = Math.random() / 2 + 0.4;
+    this.div.style.transform = ("scale(" + this.scale + "," + this.scale  + ") rotateZ(-2deg)");
+
+          
   }
+
 
   Guy.prototype.update = function() {
-  		this.x += this.speed;
+  	this.x += this.speed * this.dir;
+    
+    //fake walking animation
+    if (timer % this.rotateSpeed === 0) {
+      if (this.rotateLeft) {
+        this.div.style.transform = ("scale(" + this.scale + "," + this.scale  + ") rotateZ(-4deg)");
+        this.rotateLeft = false;
+      }
+      else {
+        this.div.style.transform = ("scale(" + this.scale + "," + this.scale  + ") rotateZ(4deg)");
+        this.rotateLeft = true;
+      }
+    }
   }
-
   Guy.prototype.draw = function() {
-    this.div.css("left", this.x + "px");
+    this.div.style.left = (this.x + "px");
   }
 
-  
 
-  Guy.prototype.remove = function() {
 
+
+
+   function animate() {
+    
+    for (var guy = 0, len = guys.length; guy < len; guy++) {
+    	guys[guy].update();
+    	guys[guy].draw();
+
+    }
+
+    timer++;
+    requestAnimationFrame(animate);
   }
-
   
 
 });

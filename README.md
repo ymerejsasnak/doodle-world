@@ -2,7 +2,7 @@
 Little interactive thing for my daughter - for practicing css animations/transforms/etc
 
 
-!!!!walker code is kind of messy and too specific --- work on this before continuing!
+
 
 
 each will be added randomly offscreen on either side
@@ -17,9 +17,10 @@ sun, clouds, trees
 
 types of guys:
 walker - crosses screen, rotate back and forth slightly to simulate walking
+slider? - faster
 flipper - jumps and flips 180degrees
 leaper - jumps and flips 360degrees
 flyer - flys across screen
 rotating flyer - flys across and rotates
 dancer - lots of transforms to make him dance across
-stretcher - walks a bit, stops, stretches tall then back, etc
+
