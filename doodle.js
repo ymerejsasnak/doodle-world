@@ -113,8 +113,12 @@ $(function() {
     this.div.css({left: this.x + "px"});
   }
 
-  Guy.prototype.delete = function() {
-    
+  Guy.prototype.remove = function(guy) {
+    if (this.x < -200 || this.x > width) {
+      this.div.remove();
+      guys.splice(guy, 1);
+      delete this;
+    }
   }
 
 
@@ -123,11 +127,15 @@ $(function() {
 
    function animate() {
     
-    for (var guy = 0, len = guys.length; guy < len; guy++) {
-    	guys[guy].update();
-    	guys[guy].draw();
-
+    for (var guy = 0; guy < guys.length; guy++) {
+    	if (guys[guy]) {
+        guys[guy].update();
+    	  guys[guy].draw();
+        guys[guy].remove(guy);
+      }
     }
+
+
 
     timer++;
     requestAnimationFrame(animate);
