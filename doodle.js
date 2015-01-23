@@ -59,12 +59,13 @@ $(function() {
 
 
 
+  //make 'guy' more generic and have specific guys inherit from it!
 
 
   function Guy(type) {
 
     $("body").append("<div class='guy " + type.toLowerCase() + "' id='guy" + guyIDcounter + "'></div>");
-  	this.div = document.getElementById("guy" + guyIDcounter);
+  	this.div = $("#guy" + guyIDcounter);
 
     //alternate generation on left and right side
     if (left) {
@@ -78,11 +79,15 @@ $(function() {
       left = true;
     }
 
+    //randomly use 1 of 3 images for walker
+    this.img = Math.floor(Math.random() * 3) + 1;
+
     this.rotateLeft = true;
-    this.rotateSpeed = Math.floor(Math.random() * 10) + 5
+    this.rotateSpeed = Math.floor(Math.random() * 5) + 5
   	this.speed = 1 + Math.random();
-    this.scale = Math.random() / 2 + 0.4;
-    this.div.style.transform = ("scale(" + this.scale + "," + this.scale  + ") rotateZ(-2deg)");
+    this.scale = Math.random() / 5 + 0.4;
+    this.div.css({ background: "url(img/walker" + this.img + ".png)",
+                   transform: "scale(" + this.scale + "," + this.scale  + ") rotateZ(-2deg)"});
 
           
   }
@@ -94,17 +99,22 @@ $(function() {
     //fake walking animation
     if (timer % this.rotateSpeed === 0) {
       if (this.rotateLeft) {
-        this.div.style.transform = ("scale(" + this.scale + "," + this.scale  + ") rotateZ(-4deg)");
+        this.div.css({transform: "scale(" + this.scale + "," + this.scale  + ") rotateZ(-4deg)"});
         this.rotateLeft = false;
       }
       else {
-        this.div.style.transform = ("scale(" + this.scale + "," + this.scale  + ") rotateZ(4deg)");
+        this.div.css({transform: "scale(" + this.scale + "," + this.scale  + ") rotateZ(4deg)"});
         this.rotateLeft = true;
       }
     }
   }
+
   Guy.prototype.draw = function() {
-    this.div.style.left = (this.x + "px");
+    this.div.css({left: this.x + "px"});
+  }
+
+  Guy.prototype.delete = function() {
+    
   }
 
 

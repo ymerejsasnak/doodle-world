@@ -5,13 +5,13 @@ html, body {
 
 body {
 	background-color: lightblue;
-	overflow: hidden;
+  overflow: hidden;
 }
 
 
 
 #controls {
-	position: absolute;
+	position: fixed;
 	top: 1%;
 	left: 1%;
 }
@@ -23,17 +23,17 @@ button {
 
 
 #ground {
-	position: absolute;
+	position: fixed;
 	height: 5%;
-	width: 100%;
 	bottom: 0;
+	width: 100%;
 	background-color: brown;
 	box-sizing: border-box;
 	border-top: 2px solid;
 }
 
 #sun {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0px;
   height: 200px;
@@ -43,7 +43,7 @@ button {
 }
 
 .tree {
-	position: absolute;
+	position: fixed;
 	bottom: 5%;
 	left: 0;
 	height: 400px;
@@ -54,12 +54,11 @@ button {
 
 
 .walker {
-	position: absolute;
+	position: fixed;
 	bottom: 5%;
 	width: 200px;
 	height: 300px;
-	background: url(img/walker1.png);
 	background-size: cover;
-  transform-origin: bottom center;
+	transform-origin: bottom center;
 	transition: transform 0.1s ease-in-out;
 }
