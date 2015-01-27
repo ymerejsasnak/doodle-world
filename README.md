@@ -13,11 +13,7 @@ make more imgs for each guy type (seems more fun if they all look different)
 
 
 
-
-dancer - lots of randomized transforms to make him dance across
-
-
-
+add a clear button to clear all guys? (set clearflag = true for .remove method then set it to false again when done?)
 
 
 

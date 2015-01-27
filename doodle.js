@@ -10,7 +10,7 @@ $(function() {
   
 
 
-  $("#controls").on("click", "button", function() {
+  $("#controls").on("click", ".guy-button", function() {
   	guys.push(new Guy( $(this).text() ));
     guyIDcounter++;    
   });
@@ -99,7 +99,9 @@ $(function() {
 
 
       case "Dancer":
-
+        this.x = Math.random() * (width - 100);
+        this.div.css({ background: "url(img/dancer1.png)", 
+                       transform: "scale(" + this.scale + ")" });
         break;
 
 
@@ -153,8 +155,32 @@ $(function() {
         break;
 
 
-      case "Dancer":
-
+      case "Dancer": //a bunch of random transforms
+        if (timer % 10 === 0) {
+          var randomValue = Math.random() * 100 - 50;
+          switch(Math.floor(Math.random() * 5)){
+            case 0:
+              this.div.css({transform: "scale(" + (this.scale * 0.99) + ") rotateX(" + (randomValue * 2) + "deg)", 
+                          transition: "transform " + (0.2 * this.speed) + "s ease-in-out" });
+              break;
+            case 1:
+              this.div.css({transform: "scale(" + this.scale + ") rotateY(" + (randomValue / 2) + "deg)", 
+                          transition: "transform " + (0.2 * this.speed) + "s ease-in-out" });
+              break;
+            case 2:
+              this.div.css({transform: "scale(" + (this.scale * 1.01) + ") rotateZ(" + (randomValue / 2) + "deg)", 
+                          transition: "transform " + (0.2 * this.speed) + "s ease-in-out" });
+              break;
+            case 3:
+              this.div.css({transform: "scale(" + this.scale + ") skewX(" + randomValue + "deg)", 
+                          transition: "transform " + (0.2 * this.speed) + "s ease-in-out" });
+              break;
+            case 4:
+              this.div.css({transform: "scale(" + this.scale + ") skewY(" + randomValue + "deg)", 
+                          transition: "transform " + (0.2 * this.speed) + "s ease-in-out" });
+              break;
+          }
+        }
         break;
 
 
