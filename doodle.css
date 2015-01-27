@@ -72,5 +72,9 @@ button {
 	height: 200px;
 	bottom: -1.5%;
 	transform-origin: center;
+}
 
+.flipper {
+	bottom: -4.5%;
+	transform-origin: center;
 }

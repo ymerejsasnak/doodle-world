@@ -76,6 +76,7 @@ $(function() {
 
     //other properties based on 'guy type'
     switch(guyType) {
+
       case "Walker":
         this.img = Math.floor(Math.random() * 3) + 1;
         this.rotateLeft = true;
@@ -83,9 +84,16 @@ $(function() {
         this.div.css({ background: "url(img/walker" + this.img + ".png)",
                        transform: "scale(" + this.scale + "," + this.scale  + ") rotateZ(-2deg)" });
         break;
+
       case "Roller":
-        this.div.css({ background: "url(img/roller1.png)",
-                       transform: "scale(" + this.scale + "," + this.scale  + ")" });
+        this.div.css({ background: "url(img/roller1.png)" });
+        break;
+
+      case "Flipper":
+        this.flipCounter = 0;
+        this.div.css({ background: "url(img/flipper1.png)" });
+        break;
+
     }
               
   }
@@ -110,9 +118,18 @@ $(function() {
         }
         break;
 
-      case "Roller":
+      case "Roller": //rotates around z axis using timer to continually increase the degrees
         this.x += this.speed * this.dir * 2;
         this.div.css({transform: "scale(0.5) rotateZ(" + (this.dir * timer * this.speed * 2) + "deg)" });
+        break;
+
+      case "Flipper": //rotates 180deg periodically to simulate walking by flipping
+        this.x += this.speed/2 * this.dir;
+        if (timer % 30 === 0) {
+          this.div.css({transform: "scale(0.5) rotateZ(" + (this.dir * this.flipCounter * 180) + "deg)", 
+                        transition: "transform " + (0.3 * this.speed) + "s ease-in-out" });
+          this.flipCounter++;
+        }
         break;
 
     }
