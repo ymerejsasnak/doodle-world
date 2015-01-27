@@ -15,6 +15,12 @@ $(function() {
     guyIDcounter++;    
   });
 
+  $("#controls").on("click", "#time", function() {
+    $("#night").toggle();    
+    $("#sun").toggle();
+    $("#moon").toggle();
+  });
+
 
   addTrees();
   animate();
