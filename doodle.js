@@ -7,7 +7,7 @@ $(function() {
   var timer = 0;
   var left = true;
   var width = $("body").width();
-  var height = $("body").height();
+  
 
 
   $("#controls").on("click", "button", function() {
@@ -78,16 +78,18 @@ $(function() {
     switch(guyType) {
 
       case "Walker":
-        this.img = Math.floor(Math.random() * 3) + 1;
         this.rotateLeft = true;
-        this.rotateSpeed = Math.floor(Math.random() * 5) + 5
+        this.rotateSpeed = Math.floor(Math.random() * 5) + 5;
+        this.img = Math.floor(Math.random() * 3) + 1;
         this.div.css({ background: "url(img/walker" + this.img + ".png)",
                        transform: "scale(" + this.scale + ") rotateZ(-2deg)" });
         break;
 
+
       case "Roller":
         this.div.css({ background: "url(img/roller1.png)" });
         break;
+
 
       case "Flipper":
         this.flipCounter = 0;
@@ -95,9 +97,11 @@ $(function() {
         this.div.css({ background: "url(img/flipper1.png)" });
         break;
 
+
       case "Dancer":
 
         break;
+
 
       case "Flyer":
         this.altitude = Math.random() * 30 + 40;
@@ -108,6 +112,7 @@ $(function() {
     }
               
   }
+
 
 
   Guy.prototype.update = function() {
@@ -129,24 +134,29 @@ $(function() {
         }
         break;
 
+
       case "Roller": //rotates around z axis using timer to continually increase the degrees
         this.x += this.speed * this.dir * 2;
         this.div.css({transform: "scale(0.5) rotateZ(" + (this.dir * timer * this.speed * 2) + "deg)" });
         break;
 
+
       case "Flipper": //rotates 180deg periodically to simulate walking by flipping
-        this.x += this.speed/2 * this.dir;
+        this.x += this.speed/4 * this.dir;
         if (this.flipTimer % 30 === 0) {
           this.div.css({transform: "scale(0.5) rotateZ(" + (this.dir * this.flipCounter * 180) + "deg)", 
                         transition: "transform " + (0.3 * this.speed) + "s ease-in-out" });
           this.flipCounter++;
+          this.x += this.speed * 4 * this.dir;
         }
         this.flipTimer++;
         break;
 
+
       case "Dancer":
 
         break;
+
 
       case "Flyer":
         if (timer % 30 === 0) {
@@ -160,10 +170,9 @@ $(function() {
 
     //and move guy left or right
     this.div.css({left: this.x + "px"});
-
-   
     
   }
+
 
 
   Guy.prototype.remove = function(thisGuy) {
