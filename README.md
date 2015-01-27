@@ -2,30 +2,28 @@
 Little interactive thing for my daughter - for practicing css animations/transforms/etc
 
 
-!!! need to add code to delete guys when they go off screen
-!! also tried to make it a bit faster by using straight JS instead of jQuery for some stuff...but no noticeable effect I think...
 
 
-
+???
 possible ideas:  have walkers change direction sometimes
 user places them there instead of walking on and off screen
 have max number of guys on screen?
+???
+
+make more and better guys!  the more different img, the more fun it seems 
 
 
-each will be added randomly offscreen on either side
-  (maybe also add functionality to add by clicking mouse and delete by clicking too?)
-each will have its size randomized
-each type may have multiple possible images associated with it (for visual diversity)
+first refactor Guy into a generic parent, then have Walker inherit from that...then add:
 
-
-
-other elements:
-sun, clouds, trees
-
-types of guys:
-walker - crosses screen, rotate back and forth slightly to simulate walking
-flipper - jumps and flips 180degrees
+jumper - jumps across, flips 360 in jump?
+flipper - walks by flipping 180degrees
 flyer - flys across screen
 dancer - lots of transforms to make him dance across
 roller - rolls across
 
+
+
+
+
+try to get ideas to make it more interactive...
+-day/night button (night changes sun to moon and lays transparent black div over everything)
