@@ -1,38 +1,30 @@
 $(function() {
 
   
-  addTrees();
+  
   var guys = [];
   var guyIDcounter = 0;
   var timer = 0;
   var left = true;
   var width = $("body").width();
-
+  var height = $("body").height();
 
 
   $("#controls").on("click", "button", function() {
   	guys.push(new Guy( $(this).text() ));
-
     guyIDcounter++;    
   });
 
 
+  addTrees();
   animate();
 
 
 
 
+  ////////////////////////////////////////////////////////////////////////
 
-
-
- 
-
-
-
-
-
-
-
+   
 
 
 
@@ -51,10 +43,11 @@ $(function() {
       
       thisTree.css({  background: "url(img/tree" + type + ".png)",
       	              left: (Math.random() * 10 + i * 25) + "%",
-      	              transform: "scale(" + scale + "," + (scale * 1.1)  + ")",
-      	              "transform-origin": "0 bottom" });      
+      	              transform: "scale(" + scale + "," + (scale * 1.1)  + ")"  });      
     }
   }
+
+
 
 
 
@@ -88,23 +81,23 @@ $(function() {
         this.rotateLeft = true;
         this.rotateSpeed = Math.floor(Math.random() * 5) + 5
         this.div.css({ background: "url(img/walker" + this.img + ".png)",
-                       transform: "scale(" + this.scale + "," + this.scale  + ") rotateZ(-2deg)"});
+                       transform: "scale(" + this.scale + "," + this.scale  + ") rotateZ(-2deg)" });
         break;
-
+      case "Roller":
+        this.div.css({ background: "url(img/roller1.png)",
+                       transform: "scale(" + this.scale + "," + this.scale  + ")" });
     }
               
   }
 
 
   Guy.prototype.update = function() {
-    //move guy
-  	this.div.css({left: this.x + "px"});
-    this.x += this.speed * this.dir;
-    
-    //then do necessary transforms based on type
+      
     switch(this.guyType) {
 
       case "Walker": //rotate slightly left and right on z axis to fake walking
+        this.x += this.speed * this.dir;
+    
         if (timer % this.rotateSpeed === 0) {
           if (this.rotateLeft) {
             this.div.css({transform: "scale(" + this.scale + "," + this.scale  + ") rotateZ(-4deg)"});
@@ -117,7 +110,15 @@ $(function() {
         }
         break;
 
+      case "Roller":
+        this.x += this.speed * this.dir * 2;
+        this.div.css({transform: "scale(0.5) rotateZ(" + (this.dir * timer * this.speed * 2) + "deg)" });
+        break;
+
     }
+
+    //and move guy left or right
+    this.div.css({left: this.x + "px"});
     
   }
 
