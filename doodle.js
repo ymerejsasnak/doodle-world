@@ -82,7 +82,7 @@ $(function() {
         this.rotateLeft = true;
         this.rotateSpeed = Math.floor(Math.random() * 5) + 5
         this.div.css({ background: "url(img/walker" + this.img + ".png)",
-                       transform: "scale(" + this.scale + "," + this.scale  + ") rotateZ(-2deg)" });
+                       transform: "scale(" + this.scale + ") rotateZ(-2deg)" });
         break;
 
       case "Roller":
@@ -91,7 +91,18 @@ $(function() {
 
       case "Flipper":
         this.flipCounter = 0;
+        this.flipTimer = 0;
         this.div.css({ background: "url(img/flipper1.png)" });
+        break;
+
+      case "Dancer":
+
+        break;
+
+      case "Flyer":
+        this.altitude = Math.random() * 30 + 40;
+        this.div.css({ background: "url(img/flyer1.png)",
+                       transform: "scale(" + this.scale + ")" });
         break;
 
     }
@@ -108,11 +119,11 @@ $(function() {
     
         if (timer % this.rotateSpeed === 0) {
           if (this.rotateLeft) {
-            this.div.css({transform: "scale(" + this.scale + "," + this.scale  + ") rotateZ(-4deg)"});
+            this.div.css({transform: "scale(" + this.scale + ") rotateZ(-4deg)"});
             this.rotateLeft = false;
           }
           else {
-            this.div.css({transform: "scale(" + this.scale + "," + this.scale  + ") rotateZ(4deg)"});
+            this.div.css({transform: "scale(" + this.scale + ") rotateZ(4deg)"});
             this.rotateLeft = true;
           }
         }
@@ -125,17 +136,32 @@ $(function() {
 
       case "Flipper": //rotates 180deg periodically to simulate walking by flipping
         this.x += this.speed/2 * this.dir;
-        if (timer % 30 === 0) {
+        if (this.flipTimer % 30 === 0) {
           this.div.css({transform: "scale(0.5) rotateZ(" + (this.dir * this.flipCounter * 180) + "deg)", 
                         transition: "transform " + (0.3 * this.speed) + "s ease-in-out" });
           this.flipCounter++;
         }
+        this.flipTimer++;
         break;
 
+      case "Dancer":
+
+        break;
+
+      case "Flyer":
+        if (timer % 30 === 0) {
+          this.altitude += Math.random() * 2 - 1;
+        }
+        this.x += this.speed * 1.5 * this.dir;
+        this.div.css({transform: "scale(" + this.scale + ")",
+                      bottom: this.altitude + "%" });
+        break;
     }
 
     //and move guy left or right
     this.div.css({left: this.x + "px"});
+
+   
     
   }
 

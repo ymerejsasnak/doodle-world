@@ -78,3 +78,13 @@ button {
 	bottom: -4.5%;
 	transform-origin: center;
 }
+
+.dancer {
+
+}
+
+.flyer {
+	height: 200px;
+	bottom: 50%;
+	transition: bottom 1s ease-in-out;
+}
