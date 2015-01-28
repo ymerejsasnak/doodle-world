@@ -21,7 +21,7 @@ body {
 
 button {
 	font-size: 1.4em;
-	background: rgba(150, 130, 200, 0.5);
+	background: rgba(170, 150, 220, 1);
 	border: 2px solid black;
 	border-radius: 10%/50%;
 	box-shadow: 1px 1px 5px black;

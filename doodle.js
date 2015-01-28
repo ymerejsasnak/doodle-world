@@ -8,7 +8,7 @@ $(function() {
   var left = true;
   var width = $("body").width();
   var clearFlag = false;
-  
+    
 
   //add guy
   $("#controls").on("click", ".guy-button", function() {
@@ -99,8 +99,10 @@ $(function() {
 
 
       case "Flipper":
+        this.x = Math.random() * (width - 100);
         this.flipCounter = 0;
         this.flipTimer = 0;
+        this.flipFrequency = Math.floor(Math.random() * 40 + 60);
         this.div.css({ background: "url(img/flipper1.png)" });
         break;
 
@@ -150,13 +152,11 @@ $(function() {
         break;
 
 
-      case "Flipper": //rotates 180deg periodically to simulate walking by flipping
-        this.x += this.speed/4 * this.dir;
-        if (this.flipTimer % 30 === 0) {
+      case "Flipper": //rotates 180deg periodically
+        if (this.flipTimer % this.flipFrequency === 0) {
           this.div.css({transform: "scale(0.5) rotateZ(" + (this.dir * this.flipCounter * 180) + "deg)", 
-                        transition: "transform " + (0.3 * this.speed) + "s ease-in-out" });
+                        transition: "transform " + (0.5 * this.speed) + "s ease-in-out" });
           this.flipCounter++;
-          this.x += this.speed * 4 * this.dir;
         }
         this.flipTimer++;
         break;
@@ -238,7 +238,7 @@ $(function() {
     if (clearFlag && guys.length === 0) clearFlag = false;
 
     timer++;
-    requestAnimationFrame(animate);
+    
   }
   
 
