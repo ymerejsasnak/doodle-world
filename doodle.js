@@ -8,7 +8,8 @@ $(function() {
   var left = true;
   var width = $("body").width();
   var clearFlag = false;
-    
+  
+  
 
   //add guy
   $("#controls").on("click", ".guy-button", function() {
@@ -94,6 +95,7 @@ $(function() {
 
 
       case "Roller":
+        this.rollTimer = 0;
         this.div.css({ background: "url(img/roller1.png)" });
         break;
 
@@ -148,7 +150,8 @@ $(function() {
 
       case "Roller": //rotates around z axis using timer to continually increase the degrees
         this.x += this.speed * this.dir * 2;
-        this.div.css({transform: "scale(0.5) rotateZ(" + (this.dir * timer * this.speed * 2) + "deg)" });
+        this.div.css({transform: "scale(0.5) rotateZ(" + (this.dir * this.rollTimer * this.speed * 2) + "deg)" });
+        this.rollTimer++;
         break;
 
 
@@ -238,7 +241,7 @@ $(function() {
     if (clearFlag && guys.length === 0) clearFlag = false;
 
     timer++;
-    
+    requestAnimationFrame(animate);
   }
   
 
