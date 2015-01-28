@@ -6,7 +6,9 @@ Little interactive thing for my daughter - for practicing css animations/transfo
 to do:
 make more imgs for each guy type (seems more fun if they all look different) 
 
-add a clear button to clear all guys? (set clearflag = true for .remove method then set it to false again when done?)
+change flipper (sucks) to jumper (stands inplace and jumps and flips 360 degrees)
+
+add a tree button instead of automatically adding trees?
 
 make buttons look better
 

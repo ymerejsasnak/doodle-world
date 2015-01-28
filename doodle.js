@@ -7,19 +7,26 @@ $(function() {
   var timer = 0;
   var left = true;
   var width = $("body").width();
+  var clearFlag = false;
   
 
-
+  //add guy
   $("#controls").on("click", ".guy-button", function() {
   	guys.push(new Guy( $(this).text() ));
     guyIDcounter++;    
   });
 
+  //toggle night/day
   $("#controls").on("click", "#time", function() {
-    $("#night").toggle();    
-    $("#sun").toggle();
-    $("#moon").toggle();
+    $("#night").fadeToggle("slow");    
+    $("#sun").fadeToggle("slow");
+    $("#moon").fadeToggle("slow");
   });
+
+  //clear all guys
+  $("#controls").on("click", "#clear", function() {
+    clearFlag = true;
+  })
 
 
   addTrees();
@@ -194,7 +201,7 @@ $(function() {
         if (timer % 30 === 0) {
           this.altitude += Math.random() * 2 - 1;
         }
-        this.x += this.speed * 1.5 * this.dir;
+        this.x += this.speed * 2 * this.dir;
         this.div.css({transform: "scale(" + this.scale + ")",
                       bottom: this.altitude + "%" });
         break;
@@ -208,7 +215,7 @@ $(function() {
 
 
   Guy.prototype.remove = function(thisGuy) {
-    if (this.x < -200 || this.x > width) {
+    if (this.x < -200 || this.x > width || clearFlag === true) {
       this.div.remove();
       guys.splice(thisGuy, 1);
       delete this;
@@ -232,6 +239,10 @@ $(function() {
     	  guys[thisGuy].remove(thisGuy);
       }
     }
+
+    //reset clearflag if it was triggered and all guys were deleted
+    if (clearFlag && guys.length === 0) clearFlag = false;
+
     timer++;
     requestAnimationFrame(animate);
   }
