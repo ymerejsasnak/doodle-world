@@ -18,15 +18,35 @@ body {
 	z-index: 2000;
 }
 
+
 button {
 	font-size: 1.4em;
+	background: rgba(150, 130, 200, 0.5);
+	border: 2px solid black;
+	border-radius: 10%/50%;
+	box-shadow: 1px 1px 5px black;
+}
 
+button:hover {
+	border: 2px solid lightgray;
+}
+
+button:active {
+	border: 2px solid white;
+	background: rgba(150, 150, 200, 0.9);
+}
+
+button:focus {
+	outline: none;
 }
 
 #time{
-  margin-left: 5%;
+  margin-left: 3%;
 }
 
+#add-tree {
+	margin-right: 3%;
+}
 
 
 #ground {
@@ -37,6 +57,7 @@ button {
 	background-color: brown;
 	box-sizing: border-box;
 	border-top: 2px solid;
+	z-index: 10000;
 }
 
 #sun, #moon {
@@ -66,7 +87,6 @@ button {
 	left: 0;
 	height: 400px;
 	width: 200px;
-	background-size: cover;
 	transform-origin: 0 bottom;
 }
 
