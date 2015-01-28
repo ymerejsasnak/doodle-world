@@ -66,6 +66,8 @@ $(function() {
     this.guyType = guyType;
     this.speed = 1 + Math.random();
     this.scale = Math.random() / 5 + 0.4;
+    //pick # 1 - 3 for image file...will not work if all guys don't have same # of images
+    this.img = Math.floor(Math.random() * 3) + 1; 
   
     $("body").append("<div class='guy " + guyType.toLowerCase() + "' id='guy" + guyIDcounter + "'></div>");
   	this.div = $("#guy" + guyIDcounter);
@@ -88,7 +90,7 @@ $(function() {
       case "Walker":
         this.rotateLeft = true;
         this.rotateSpeed = Math.floor(Math.random() * 5) + 5;
-        this.img = Math.floor(Math.random() * 3) + 1;
+        
         this.div.css({ background: "url(img/walker" + this.img + ".png)",
                        transform: "scale(" + this.scale + ") rotateZ(-2deg)" });
         break;
@@ -96,7 +98,7 @@ $(function() {
 
       case "Roller":
         this.rollTimer = 0;
-        this.div.css({ background: "url(img/roller1.png)" });
+        this.div.css({ background: "url(img/roller" + this.img + ".png)" });
         break;
 
 
@@ -105,20 +107,20 @@ $(function() {
         this.flipCounter = 0;
         this.flipTimer = 0;
         this.flipFrequency = Math.floor(Math.random() * 40 + 60);
-        this.div.css({ background: "url(img/flipper1.png)" });
+        this.div.css({ background: "url(img/flipper" + this.img + ".png)" });
         break;
 
 
       case "Dancer":
         this.x = Math.random() * (width - 100);
-        this.div.css({ background: "url(img/dancer1.png)", 
+        this.div.css({ background: "url(img/dancer" + this.img + ".png)", 
                        transform: "scale(" + this.scale + ")" });
         break;
 
 
       case "Flyer":
         this.altitude = Math.random() * 30 + 40;
-        this.div.css({ background: "url(img/flyer1.png)",
+        this.div.css({ background: "url(img/flyer" + this.img + ".png)",
                        transform: "scale(" + this.scale + ")" });
         break;
 
