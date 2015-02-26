@@ -4,8 +4,8 @@ Little interactive thing for my daughter - for practicing css animations/transfo
 
 
 to do:
-make more imgs for each guy type (seems more fun if they all look different) 
-
 give trees and guys random z-index (in certain range) so some trees are foreground some are background
 
 make nighttime actually have some functional purpose?
+
+things only line up exactly right on my desktop in chrome...address this
